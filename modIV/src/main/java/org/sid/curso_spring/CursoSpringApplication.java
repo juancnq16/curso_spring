@@ -24,7 +24,7 @@ public class CursoSpringApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner initApp(UserServiceImpl userService, RoleService roleService, NotaServiceImpl notaService){
+	public CommandLineRunner initApp(UserServiceImpl userService, RoleService roleService){
 		return args -> {
 			//todo
 			Role user = new Role();
