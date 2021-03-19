@@ -20,6 +20,8 @@ public class User {
     @Column
     private String name;
 
+    @OneToMany(mappedBy = "usuario")
+    private List <Nota> notas;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USER_ROLES",

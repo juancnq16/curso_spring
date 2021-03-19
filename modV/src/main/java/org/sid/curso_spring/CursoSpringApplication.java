@@ -44,6 +44,10 @@ public class CursoSpringApplication {
 			roleSet.add(a);
 			roleSet.add(b);
 			User savedAdmin = userService.CreateAdmin(adminUser, roleSet);
+			Nota nota1 = new Nota();
+			nota1.setContenido("contenido");
+			nota1.setTitulo("titulo");
+			nota1.setUser(savedAdmin);
 			System.out.println("Creó que funcionó"	);
 		};
 	}	
