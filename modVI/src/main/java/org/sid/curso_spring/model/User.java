@@ -22,7 +22,7 @@ public class User {
     private String name;
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
+    
     private List <Nota> notas;
 
     @ManyToMany(fetch = FetchType.EAGER)

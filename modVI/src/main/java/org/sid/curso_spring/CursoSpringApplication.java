@@ -41,7 +41,6 @@ public class CursoSpringApplication{
 			adminUser.setName("Juan");
 			adminUser.setPassword("123");
 			adminUser.setUsername("admin");
-			//userService.save(adminUser);
 			Set<Role> roleSet = new HashSet<>();
 			roleSet.add(a);
 			roleSet.add(b);
@@ -56,10 +55,7 @@ public class CursoSpringApplication{
 			nota2.setUser(savedAdmin);
 			notaService.save(nota1);
 			notaService.save(nota2);
-			//Optional<User> userRep = userService.findUser(savedAdmin.getId());
 			System.out.println("Creó que funcionó");
-			//notaService.test(""+savedAdmin.getId());
-			//System.out.println("Creó que funcionó"	);
 		};
 	}	
 }

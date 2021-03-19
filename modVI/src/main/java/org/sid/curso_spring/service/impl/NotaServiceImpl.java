@@ -30,16 +30,40 @@ public class NotaServiceImpl implements NotaService {
         }
         */
     }
-    public Optional<Nota> findNota(long id){
+    @Override
+    public Optional<Nota> readNota(long id){
         return notaDao.findById(id);
     }
     public Iterable<Nota> findAll(){
         return notaDao.findAll();
     }
     @Override
-    public Nota save(Nota role) {
+    public Nota save(Nota nota) {
         // TODO Auto-generated method stub
 
-        return notaDao.save(role);
+        return notaDao.save(nota);
+    }
+    @Override
+    public void delete(Nota nota) {
+        notaDao.delete(nota);
+        // TODO Auto-generated method stub
+        
     }
 }
+/**
+ * @PostMapping("/modNota")
+    public Nota modNota (@RequestBody NotaDto body, HttpServletResponse response) throws IOException{
+        Optional<Nota> existingNote = notaService.findNota(body.getId());
+        Nota nota = new Nota();
+        if(existingNote.isPresent()){
+            nota = existingNote.get();
+            nota.setContenido(nota.getContenido());
+            nota.setTitulo(nota.getTitulo());
+            return notaService.save(nota);
+        }else{
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST,"La nota no existe");
+            return nota;
+        }
+        
+    }
+ */

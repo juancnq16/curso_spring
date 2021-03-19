@@ -1,8 +1,11 @@
 package org.sid.curso_spring.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.sid.curso_spring.config.TokenProvider;
 import org.sid.curso_spring.dto.UserDto;
@@ -48,9 +51,14 @@ public class UserController {
     private NotaServiceImpl notaService;
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
-    public User saveUser(@RequestBody UserDto user){
-        System.out.println("--------------------"+user.getName());
-        return userService.save(user);
+    public User saveUser(@RequestBody UserDto user, HttpServletResponse response) throws IOException{
+        try {
+            return userService.save(user);
+        } catch (Exception e) {
+            response.addHeader("errMsg", "Nombre de usuario en uso");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return new User();
+        }
     }
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> generateToken(@RequestBody LoginUser loginUser) throws AuthenticationException {
@@ -76,17 +84,12 @@ public class UserController {
     public String userPing(){
         return "Sólo para usuarios";
     }
-    @GetMapping("/getInfo/{id}")
-    public Optional<Nota> getInfo(@PathVariable(value = "id") long id){
-        return notaService.findNota(id);
-        //return userService.findUser(id);
-    }
     
-    @GetMapping("/test")
+    
+    @GetMapping("/getInfo")
     public User test(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         userService.findOne(auth.getName());
         return userService.findOne(auth.getName());
-        //return userService.findUser(id);
     }
 }
