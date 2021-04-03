@@ -17,18 +17,8 @@ public class NotaServiceImpl implements NotaService {
     @Autowired
     private UserServiceImpl userService;
     
-    public List <Nota> test(long uId){
-        System.out.println("kakakakakakak"	);
-        Optional<User> usr = userService.findUser(uId);
-        
-        return notaDao.findByUser(usr.get());
-        /*
-        System.out.println("gggggggg"	);
-        System.out.println("CLASSSSSSSS "+ uId);
-        for (Nota nota: userNotes){
-            System.out.println("Titulo::::::: "+nota.getTitulo()+"\n Contenido--------"+nota.getContenido());
-        }
-        */
+    public List <Nota> test(User user){
+        return notaDao.findByUser(user);
     }
     @Override
     public Optional<Nota> readNota(long id){
@@ -49,21 +39,5 @@ public class NotaServiceImpl implements NotaService {
         // TODO Auto-generated method stub
         
     }
+
 }
-/**
- * @PostMapping("/modNota")
-    public Nota modNota (@RequestBody NotaDto body, HttpServletResponse response) throws IOException{
-        Optional<Nota> existingNote = notaService.findNota(body.getId());
-        Nota nota = new Nota();
-        if(existingNote.isPresent()){
-            nota = existingNote.get();
-            nota.setContenido(nota.getContenido());
-            nota.setTitulo(nota.getTitulo());
-            return notaService.save(nota);
-        }else{
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST,"La nota no existe");
-            return nota;
-        }
-        
-    }
- */

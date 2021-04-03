@@ -3,6 +3,7 @@ package org.sid.curso_spring;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.Scanner;
 
 import org.sid.curso_spring.dto.UserDto;
 import org.sid.curso_spring.model.Nota;
@@ -56,6 +57,9 @@ public class CursoSpringApplication{
 			notaService.save(nota1);
 			notaService.save(nota2);
 			System.out.println("Creó que funcionó");
+			Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+        	String entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+        	System.out.println ("Entrada recibida por teclado es: \"" + entradaTeclado +"\"");
 		};
 	}	
 }

@@ -92,4 +92,10 @@ public class UserController {
         userService.findOne(auth.getName());
         return userService.findOne(auth.getName());
     }
+    @GetMapping("/getNotes")
+    public List<Nota> testNotes(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User owner = userService.findOne(auth.getName());
+        return notaService.test(owner);
+    }
 }
